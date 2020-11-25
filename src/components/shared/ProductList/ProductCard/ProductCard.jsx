@@ -1,28 +1,28 @@
-import React, { Component } from 'react';
-import cx from 'classnames';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import cx from "classnames";
+import PropTypes from "prop-types";
 
-import './ProductCard.css';
+import "./ProductCard.css";
 
 export default class ProductCard extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
       isFavorite: false
-    }
+    };
 
     this.onFavoriteClick = this.onFavoriteClick.bind(this);
     this.onClickProduct = this.onClickProduct.bind(this);
     this.onAddProductClick = this.onAddProductClick.bind(this);
   }
 
-  onFavoriteClick () {
+  onFavoriteClick() {
     const prevState = this.state.isFavorite;
-    this.setState({isFavorite: !prevState});
+    this.setState({ isFavorite: !prevState });
   }
 
-  onClickProduct (id) {
+  onClickProduct(id) {
     if (!id) return;
 
     const { onClickProduct } = this.props;
@@ -31,7 +31,7 @@ export default class ProductCard extends Component {
     }
   }
 
-  onAddProductClick (product) {
+  onAddProductClick(product) {
     if (!product) return;
 
     const { onAddProduct } = this.props;
@@ -40,21 +40,27 @@ export default class ProductCard extends Component {
     }
   }
 
-  render () {
+  render() {
     const { product } = this.props;
     const isSale = product.salePrice < product.originalPrice;
     const originalPrice = isSale && <span>${product.originalPrice}</span>;
 
     return (
       <div className="product-item">
-        <div className="product" onClick={() => this.onClickProduct(product.id)}>
+        <div
+          className="product"
+          onClick={() => this.onClickProduct(product.id)}
+        >
           <div className="product_image">
-            <img src={product.image} alt={product.image} />
+            <img src={`assets/${product.image}`} alt={product.name} />
           </div>
 
-          <div onClick={this.onFavoriteClick} className={cx('favorite favorite_left', {
-            'active': this.state.isFavorite
-          })} />
+          <div
+            onClick={this.onFavoriteClick}
+            className={cx("favorite favorite_left", {
+              active: this.state.isFavorite
+            })}
+          />
 
           {isSale && (
             <div className="product_bubble product_bubble_right product_bubble_red d-flex flex-column align-items-center">
@@ -73,8 +79,11 @@ export default class ProductCard extends Component {
           </div>
         </div>
 
-        <div onClick={() => this.onAddProductClick(product)} className="red_button add_to_cart_button">
-          <span>add to cart</span>
+        <div
+          onClick={() => this.onAddProductClick(product)}
+          className="cart_button"
+        >
+          <span>Thêm vào giỏ hàng</span>
         </div>
       </div>
     );
@@ -82,7 +91,7 @@ export default class ProductCard extends Component {
 }
 
 ProductCard.propTypes = {
-  product: PropTypes.object.isRequired,
+  product: PropTypes.object.isRequired
 };
 
 ProductCard.defaultProps = {};

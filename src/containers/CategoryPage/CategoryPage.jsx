@@ -1,32 +1,39 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types';
-import queryString from 'query-string';
-import { withRouter } from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import queryString from "query-string";
+import { withRouter } from "react-router-dom";
 
-import SideBar from '../../components/CategoryPage/Sidebar/Sidebar';
-import { ShippingInformation, ProductList, Breadcrumb } from '../../components/shared';
-import SortingDropDown from '../../components/CategoryPage/SortingDropDown/SortingDropDown';
-import PerPageDropDown from '../../components/CategoryPage/PerPageDropDown/PerPageDropDown';
-import PageNavigationBar from '../../components/CategoryPage/PageNavigationBar/PageNavigationBar';
+import SideBar from "../../components/CategoryPage/Sidebar/Sidebar";
+import {
+  ShippingInformation,
+  ProductList,
+  Breadcrumb
+} from "../../components/shared";
+import SortingDropDown from "../../components/CategoryPage/SortingDropDown/SortingDropDown";
+import PerPageDropDown from "../../components/CategoryPage/PerPageDropDown/PerPageDropDown";
+// import PageNavigationBar from '../../components/CategoryPage/PageNavigationBar/PageNavigationBar';
 
-import { fetchCategories } from '../../actions/CategoryActions';
-import config from '../../config';
+import products from "../../services/data/products";
 
-import './CategoryPage.css';
+import { fetchCategories } from "../../actions/CategoryActions";
+import config from "../../config";
+
+import "./CategoryPage.css";
+import FilterByPrice from "../../components/CategoryPage/Sidebar/FilterByPrice/FilterByPrice";
 
 const perPageValues = [6, 12, 24];
 const bouncePrice = {
   min: 0,
   max: 1000
-}
+};
 const sortOptions = [
   {
-    name: 'Default',
-    pattern: null,
+    name: "Default",
+    pattern: null
   },
   {
-    name: 'Price',
+    name: "Price",
     pattern: "salePrice DESC"
   },
   // {
@@ -34,20 +41,20 @@ const sortOptions = [
   //   pattern: "salePrice ASC"
   // },
   {
-    name: 'Name',
+    name: "Name",
     pattern: "name ASC"
   }
-]
+];
 
 class CategoryPage extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     const searchParams = queryString.parse(this.props.location.search);
     const { limit, page, minPrice, maxPrice, category, sort } = searchParams;
 
     this.state = {
-      products: [],
+      products: products,
       pagination: {
         skip: 0,
         limit: 6,
@@ -55,22 +62,24 @@ class CategoryPage extends Component {
       },
       loading: false,
       error: null
-    }
+    };
 
     this.filterAndSort = {
       limit: limit || perPageValues[0],
-      selectedCategoryId: category || 'all',
+      selectedCategoryId: category || "all",
       currentPage: page || 1,
       filterPrice: {
         min: minPrice || 0,
         max: maxPrice || 600
       },
-      selectedOption: sort ? sortOptions.find((value) => {
-        if (value.name === sort) {
-          return value;
-        }
-      }): sortOptions[0]
-    }
+      selectedOption: sort
+        ? sortOptions.find(value => {
+            if (value.name === sort) {
+              return value;
+            }
+          })
+        : sortOptions[0]
+    };
 
     this.onPerPageValueChange = this.onPerPageValueChange.bind(this);
     this.onSelectedCategoryChanged = this.onSelectedCategoryChanged.bind(this);
@@ -90,13 +99,16 @@ class CategoryPage extends Component {
       skip: this.filterAndSort.limit * (this.filterAndSort.currentPage - 1),
       where: {
         salePrice: {
-            gt: +this.filterAndSort.filterPrice.min,
-            lt: +this.filterAndSort.filterPrice.max
+          gt: +this.filterAndSort.filterPrice.min,
+          lt: +this.filterAndSort.filterPrice.max
         }
       }
     };
 
-    if (this.filterAndSort.selectedCategoryId !== '' && this.filterAndSort.selectedCategoryId !== 'all') {
+    if (
+      this.filterAndSort.selectedCategoryId !== "" &&
+      this.filterAndSort.selectedCategoryId !== "all"
+    ) {
       filter.where.categoryId = this.filterAndSort.selectedCategoryId;
     }
     if (this.filterAndSort.selectedOption.pattern) {
@@ -110,7 +122,7 @@ class CategoryPage extends Component {
   fetchProducts(filter) {
     let url = config.url.product;
     if (filter) {
-      url += `?filter=${JSON.stringify(filter)}`
+      url += `?filter=${JSON.stringify(filter)}`;
     }
     fetch(url)
       .then(this.handleErrors)
@@ -121,7 +133,7 @@ class CategoryPage extends Component {
           pagination: json.pagination
         });
       })
-      .catch(error => this.setState({error}));
+      .catch(error => this.setState({ error }));
   }
 
   static handleErrors(response) {
@@ -132,7 +144,7 @@ class CategoryPage extends Component {
   }
 
   generateQueryString() {
-    let queryString = '?';
+    let queryString = "?";
 
     queryString += `limit=${this.filterAndSort.limit}`;
     queryString += `&page=${this.filterAndSort.currentPage}`;
@@ -147,56 +159,57 @@ class CategoryPage extends Component {
     });
   }
 
-  onPerPageValueChange (value) {
+  onPerPageValueChange(value) {
     if (!value) return;
 
     this.filterAndSort.limit = value;
     this.updateProductList();
   }
 
-  onSelectedCategoryChanged (category) {
+  onSelectedCategoryChanged(category) {
     if (!category || !category.id) return;
 
     this.filterAndSort.selectedCategoryId = category.id;
     this.updateProductList();
   }
 
-  onPageChanged (value) {
+  onPageChanged(value) {
     if (!value) return;
 
     this.filterAndSort.currentPage = value;
     this.updateProductList();
   }
 
-  onSortOptionChanged (option) {
+  onSortOptionChanged(option) {
     if (!option) return;
 
     this.filterAndSort.selectedOption = option;
     this.updateProductList();
   }
 
-  onFilterPriceChanged (value) {
+  onFilterPriceChanged(value) {
     if (!value) return;
 
     this.filterAndSort.filterPrice = value;
     this.updateProductList();
   }
 
-  render () {
-    const {loading, products, pagination} = this.state;
+  render() {
+    const { loading, products, pagination } = this.state;
 
     return (
       <div>
         <div className="container product_section_container">
-		      <div className="row">
-			      <div className="col product_section clearfix">
+          <div className="row">
+            <div className="col product_section clearfix">
               <Breadcrumb />
               <SideBar
                 onSelectedCategoryChanged={this.onSelectedCategoryChanged}
                 categories={this.props.categories}
                 bounce={bouncePrice}
                 filterPrice={this.filterAndSort.filterPrice}
-                onFilterPriceChanged={this.onFilterPriceChanged}/>
+                onFilterPriceChanged={this.onFilterPriceChanged}
+              />
 
               <div className="main_content">
                 <div className="products_iso">
@@ -205,38 +218,47 @@ class CategoryPage extends Component {
                       <div className="product_sorting_container product_sorting_container_top">
                         <ul className="product_sorting">
                           <SortingDropDown
-                          options={sortOptions}
-                          selectedOption={this.filterAndSort.selectedOption}
-                          onSortOptionChanged={this.onSortOptionChanged}/>
+                            options={sortOptions}
+                            selectedOption={this.filterAndSort.selectedOption}
+                            onSortOptionChanged={this.onSortOptionChanged}
+                          />
                           <PerPageDropDown
-                          selectedValue={this.filterAndSort.limit}
-                          values={perPageValues}
-                          onPerPageValueChange={this.onPerPageValueChange}/>
+                            selectedValue={this.filterAndSort.limit}
+                            values={perPageValues}
+                            onPerPageValueChange={this.onPerPageValueChange}
+                          />
                         </ul>
-                        {pagination && 
-                        <PageNavigationBar
-                        total={Math.ceil(pagination.total / pagination.limit)}
-                        current={this.filterAndSort.currentPage}
-                        onPageChanged={this.onPageChanged}/>}
-								      </div>
+                        {/* {pagination && (
+                          <PageNavigationBar
+                            total={Math.ceil(
+                              pagination.total / pagination.limit
+                            )}
+                            current={this.filterAndSort.currentPage}
+                            onPageChanged={this.onPageChanged}
+                          />
+                        )} */}
+                      </div>
 
-                      {!loading && <ProductList
-                        products={products} 
-                      />}
+                      {!loading && <ProductList products={products} />}
 
                       <div className="product_sorting_container product_sorting_container_bottom clearfix">
-									      <ul className="product_sorting">
+                        <ul className="product_sorting">
                           <PerPageDropDown
-                          selectedValue={this.filterAndSort.limit}
-                          values={perPageValues}
-                          onPerPageValueChange={this.onPerPageValueChange}/>
+                            selectedValue={this.filterAndSort.limit}
+                            values={perPageValues}
+                            onPerPageValueChange={this.onPerPageValueChange}
+                          />
                         </ul>
-                        {pagination && 
-                        <PageNavigationBar
-                        total={Math.ceil(pagination.total / pagination.limit)}
-                        current={this.filterAndSort.currentPage}
-                        onPageChanged={this.onPageChanged}/>}
-								      </div>
+                        {/* {pagination && (
+                          <PageNavigationBar
+                            total={Math.ceil(
+                              pagination.total / pagination.limit
+                            )}
+                            current={this.filterAndSort.currentPage}
+                            onPageChanged={this.onPageChanged}
+                          />
+                        )} */}
+                      </div>
                     </div>
                   </div>
                 </div>

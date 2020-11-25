@@ -1,39 +1,57 @@
-import React, {Component} from 'react';
-
-import './TopNavigation.css';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import "./TopNavigation.css";
 
 export default class TopNavigation extends Component {
-  render () {
+  render() {
     return (
       <div className="top_nav">
         <div className="container">
           <div className="row">
             <div className="col-md-6">
-              <div className="top_nav_left">free shipping on all u.s orders over $50</div>
+              <div className="top_nav_left">
+                Miễn phí vận chuyển cho hóa đơn trên 100.000 đ
+              </div>
             </div>
             <div className="col-md-6 text-right">
               <div className="top_nav_right">
                 <ul className="top_nav_menu">
                   <li className="language">
                     <a href="#">
-                      English
-                      <i className="fa fa-angle-down"></i>
+                      Tiếng Việt
+                      <i className="fa fa-angle-down" />
                     </a>
                     <ul className="language_selection">
-                      <li><a href="#">French</a></li>
-                      <li><a href="#">Italian</a></li>
-                      <li><a href="#">German</a></li>
-                      <li><a href="#">Spanish</a></li>
+                      <li>
+                        <a href="#">Tiếng Anh</a>
+                      </li>
+                      <li>
+                        <a href="#">Tiếng Hàn</a>
+                      </li>
+                      <li>
+                        <a href="#">Tiếng Trung</a>
+                      </li>
+                      <li>
+                        <a href="#">Tiếng Nhật</a>
+                      </li>
                     </ul>
                   </li>
                   <li className="account">
                     <a href="#">
-                      My Account
-                      <i className="fa fa-angle-down"></i>
+                      Tài Khoản
+                      <i className="fa fa-angle-down" />
                     </a>
                     <ul className="account_selection">
-                      <li><a href="#"><i className="fa fa-sign-in" aria-hidden="true"></i>Sign In</a></li>
-                      <li><a href="#"><i className="fa fa-user-plus" aria-hidden="true"></i>Register</a></li>
+                      <li>
+                        <a href="#">
+                          <Link to="/Login">Đăng nhập</Link>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <Link to="/Register">Đăng ký</Link>
+                        </a>
+                      </li>
                     </ul>
                   </li>
                 </ul>

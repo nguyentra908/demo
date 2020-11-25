@@ -11,7 +11,7 @@ export class Footer extends Component {
             <div className="col-lg-6">
               <div className="footer_nav_container d-flex flex-sm-row flex-column align-items-center justify-content-lg-start justify-content-center text-center">
                 <ul className="footer_nav">
-                  <li><a href="https://nordiccoder.com/blog" target="blank">blog</a></li>
+                  <li><a href="https://nordiccoder.com/blog" target="blank">Blog</a></li>
                   <li><a href="#">FAQs</a></li>
                   <li><a href="#">Contact us</a></li>
                 </ul>
@@ -32,7 +32,7 @@ export class Footer extends Component {
           <div className="row">
             <div className="col-lg-12">
               <div className="footer_nav_container">
-                <div className="cr">©2018 All Rights Reserverd. This template is made with <i className="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">Colorlib</a></div>
+                <div className="cr">©2020 All Rights Reserverd. This template is made with <i className="fa fa-heart-o" aria-hidden="true"></i> by <a href="#">TeaCode</a></div>
               </div>
             </div>
           </div>

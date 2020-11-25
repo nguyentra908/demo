@@ -20,13 +20,18 @@ export default class CategoryList extends Component {
     return (
       <div className="sidebar_section">
         <div className="sidebar_title">
-          <h5>Product Category</h5>
+          <h5>Danh mục sản phẩm</h5>
         </div>
         <ul className="sidebar_categories">
           {this.props.categories.map((category) => (
-            <li key={category.id} onClick={() => this.onItemClick(category)} className={cx({
+            <li 
+            key={category.id} 
+            onClick={() => this.onItemClick(category)} 
+            className={cx({
               'active': category.id === this.props.selectedCategoryId
-            })}><a href="#">{category.id === this.props.selectedCategoryId && <span><i className="fa fa-angle-double-right" aria-hidden="true"></i></span>}{category.name}</a></li>
+            })}>
+              <a href="#">{category.id === this.props.selectedCategoryId && 
+              <span><i className="fa fa-angle-double-right" aria-hidden="true"></i></span>}{category.name}</a></li>
           ))}
         </ul>
       </div>

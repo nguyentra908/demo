@@ -1,4 +1,4 @@
-// Get from NC API
+
 export default [
   {
     "id": "5b822e7f9c300309b7e9befc",

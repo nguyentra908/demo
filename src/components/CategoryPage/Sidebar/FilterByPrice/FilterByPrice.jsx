@@ -30,7 +30,7 @@ export default class FilterByPrice extends Component {
     return (
       <div className="sidebar_section">
         <div className="sidebar_title">
-          <h5>Filter by Price</h5>
+          <h5>Lọc theo giá</h5>
         </div>
         <InputRange
           maxValue={+this.props.bounce.max}
@@ -38,7 +38,7 @@ export default class FilterByPrice extends Component {
           value={this.state.value}
           onChange={value => this.setState({value})}/>
         <div id="slider-range"></div>
-        <div className="filter_button" onClick={this.onFilterChanged}><span>filter</span></div>
+        <div className="filter_button" onClick={this.onFilterChanged}><span>Lọc</span></div>
       </div>
     );
   }

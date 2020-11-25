@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import _ from 'lodash';
 import memoize from 'memoize-one';
-
+import products from '../../../services/data/products';
 import { ProductList } from '../../shared';
 import CategoryOptions from './CategoryOptions/CategoryOptions';
 
@@ -21,7 +21,7 @@ class NewArrivals extends Component {
     }
 
     this.onProductsChange = memoize(
-      (products) => {
+      () => {
         if (this.state && this.state.filteredProducts.length > 0) return;
 
         this.setState({
@@ -78,7 +78,7 @@ class NewArrivals extends Component {
           <div className="row">
             <div className="col text-center">
               <div className="section_title new_arrivals_title">
-                <h2>New Arrivals</h2>
+                <h2>Sản phẩm mới</h2>
               </div>
             </div>
           </div>

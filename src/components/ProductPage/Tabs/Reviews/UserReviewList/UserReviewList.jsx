@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import UserReview from './UserReview/UserReview';
+import UserReview from "./UserReview/UserReview";
 
-import './UserReviewList.css';
+import "./UserReviewList.css";
 
 export default class UserReviewList extends Component {
-  render () {
+  render() {
     return (
       <div className="col-lg-6 reviews_col">
         <div className="tab_title reviews_title">
-          <h4>Reviews (2)</h4>
+          <h4>Nhận xét (2)</h4>
         </div>
 
-        <UserReview></UserReview>
-        <UserReview></UserReview>
+        <UserReview />
+        <UserReview />
       </div>
     );
   }

@@ -1,0 +1,23 @@
+.contact {
+    width: 60%;
+   
+    margin: 15% auto;
+}
+.contact_title {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 30px;
+    font-weight: 700;
+    color: #5b5b62;
+}
+.buton_send {  
+    background: #fe4c50;
+    width: 110px;
+    margin: auto;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    border-radius: 5px;
+}

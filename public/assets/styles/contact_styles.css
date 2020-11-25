@@ -798,11 +798,6 @@ section
 {
 	position: absolute;
 	top: 50%;
-	-webkit-transform: translateY(-50%);
-	-moz-transform: translateY(-50%);
-	-ms-transform: translateY(-50%);
-	-o-transform: translateY(-50%);
-	transform: translateY(-50%);
 	left: 15px;
 }
 .logo_container a
@@ -818,22 +813,15 @@ section
 }
 .red_button
 {
-	display: -webkit-inline-box;
-	display: -moz-inline-box;
-	display: -ms-inline-flexbox;
-	display: -webkit-inline-flex;
+	
 	display: inline-flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	width: auto;
+	width: 190px;
 	height: 40px;
 	background: #fe4c50;
-	border-radius: 3px;
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	-ms-transition: all 0.3s ease;
-	-o-transition: all 0.3s ease;
+	border-radius: 3px;	
 	transition: all 0.3s ease;
 }
 .red_button:hover
@@ -880,39 +868,6 @@ section
 	height: 5px;
 	background: #fe4c50;
 	content: '';
-}
-.product_details_title p
-{
-	color: #;
-}
-
-/*********************************
-4. Breadcrumbs
-*********************************/
-
-.breadcrumbs
-{
-	width: 100%;
-	height: 60px;
-	border-bottom: solid 1px #ebebeb;
-	margin-bottom: 79px;
-}
-.breadcrumbs ul li
-{
-	display: inline-block;
-	margin-right: 17px;
-}
-.breadcrumbs ul li.active a
-{
-	color: #b9b4c7;
-}
-.breadcrumbs ul li i
-{
-	margin-right: 17px;
-}
-.breadcrumbs ul li a
-{
-	color: #51545f;
 }
 
 /*********************************
@@ -1028,127 +983,6 @@ section
 8. Contact Form
 *********************************/
 
-.form_input
-{
-	display: block;
-	width: 100%;
-	height: 50px;
-	border: solid 1px #e5e5e5;
-	padding-left: 20px;
-	font-size: 16px;
-	margin-bottom: 20px;
-}
-.input_message
-{
-	width: 100%;
-	margin-bottom: 15px;
-	font-size: 16px;
-	padding-bottom: 15px;
-}
-.form_input:focus,
-#newsletter_email:focus
-{
-	border: solid 1px #7f7f7f !important;
-	box-shadow: none !important;
-}
-.message_submit_btn
-{
-	background: #1e1e27;
-	color: #FFFFFF;
-	text-transform: uppercase;
-	width: 165px;
-	border: none;
-	height: 46px;
-	cursor: pointer;
-}
-.message_submit_btn:hover
-{
-	background: #2b2b34 !important;
-}
-:focus
-{
-	outline: none !important;
-}
-.input_ph::-webkit-input-placeholder
-{
-	font-size: 16px !important;
-	font-weight: 400;
-	color: #b9b4c7 !important;
-}
-.input_ph:-moz-placeholder /* older Firefox*/
-{
-	font-size: 16px !important;
-	font-weight: 400;
-	color: #b9b4c7 !important;
-}
-.input_ph::-moz-placeholder /* Firefox 19+ */
-{
-	font-size: 16px !important;
-	font-weight: 400;
-	color: #b9b4c7 !important;
-}
-.input_ph:-ms-input-placeholder
-{
-	font-size: 16px !important;
-	font-weight: 400;
-	color: #b9b4c7 !important;
-}
-.input_ph::input-placeholder
-{
-	font-size: 16px !important;
-	font-weight: 400;
-	color: #b9b4c7 !important;
-}
-textarea
-{
-	border: solid 1px #e5e5e5;
-	padding-left: 20px;
-	padding-top: 15px;
-}
-textarea:hover
-{
-	border-color: #7f7f7f !important;
-}
-.input_name
-{
-	margin-bottom: 19px;
-	margin-top: 31px;
-}
-.input_review
-{
-	display: block;
-	width: 100%;
-	border: solid 1px #e5e5e5;
-	margin-top: 23px;
-	padding-left: 20px;
-	padding-top: 13px;
-}
-.user_star_rating
-{
-	display: inline-block;
-	margin-left: 18px;
-}
-.user_star_rating li
-{
-	display: inline-block;
-	margin-right: -3px;
-	cursor: pointer;
-}
-.user_star_rating li i
-{
-	color: #f5c136;
-	font-size: 18px;
-}
-.review_submit_btn
-{
-	width: 170px;
-	border: none;
-	color: #FFFFFF;
-	text-transform: uppercase;
-	font-size: 14px;
-	font-weight: 500;
-	cursor: pointer;
-}
 
 /*********************************
 9. Newsletter
@@ -1188,36 +1022,7 @@ textarea:hover
 	font-size: 14px;
 	padding-left: 20px;
 }
-::-webkit-input-placeholder
-{
-	font-size: 14px !important;
-	font-weight: 400;
-	color: #b9b4c7 !important;
-}
-:-moz-placeholder /* older Firefox*/
-{
-	font-size: 14px !important;
-	font-weight: 400;
-	color: #b9b4c7 !important;
-}
-::-moz-placeholder /* Firefox 19+ */
-{
-	font-size: 14px !important;
-	font-weight: 400;
-	color: #b9b4c7 !important;
-}
-:-ms-input-placeholder
-{
-	font-size: 14px !important;
-	font-weight: 400;
-	color: #b9b4c7 !important;
-}
-::input-placeholder
-{
-	font-size: 14px !important;
-	font-weight: 400;
-	color: #b9b4c7 !important;
-}
+
 .newsletter_submit_btn
 {
 	width: 160px;
@@ -1233,72 +1038,4 @@ textarea:hover
 .newsletter_submit_btn:hover
 {
 	background: #FE7C7F;
-}
-
-/*********************************
-10. Footer
-*********************************/
-
-.footer_nav_container
-{
-	height: 130px;
-}
-.cr
-{
-	margin-right: 48px;
-}
-.footer_nav li
-{
-	display: inline-block;
-	margin-right: 45px;
-}
-.footer_nav li:last-child
-{
-	margin-right: 0px;
-}
-.footer_nav li a, .cr
-{
-	font-size: 14px;
-	color: #51545f;
-	line-height: 30px;
-	-webkit-transition: all 300ms ease;
-	-moz-transition: all 300ms ease;
-	-ms-transition: all 300ms ease;
-	-o-transition: all 300ms ease;
-	transition: all 300ms ease;
-}
-.footer_nav li a:hover, .cr a, .cr i
-{
-	color: #fe4c50;
-}
-.footer_social
-{
-	height: 130px;
-}
-.footer_social ul li
-{
-	display: inline-block;
-	margin-right: 10px;
-}
-.footer_social ul li:last-child
-{
-	margin-right: 0px;
-}
-.footer_social ul li a
-{
-	color: #51545f;
-	-webkit-transition: all 300ms ease;
-	-moz-transition: all 300ms ease;
-	-ms-transition: all 300ms ease;
-	-o-transition: all 300ms ease;
-	transition: all 300ms ease;
-	padding: 10px;
-}
-.footer_social ul li:last-child a
-{
-	padding-right: 0px;
-}
-.footer_social ul li a:hover
-{
-	color: #fe4c50;
 }

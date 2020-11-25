@@ -1,8 +1,4 @@
-.quantity_selector {
-  display: -webkit-box;
-  display: -moz-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
+.quantity_selector { 
   display: flex;
   flex-direction: row;
   justify-content: space-between;

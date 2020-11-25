@@ -1,8 +1,8 @@
-// Inherited from hungnguyen
+
 export default [
   {
     "id": "5ba7ce147337af3cb8dfb6c7",
-    "name": "Fujifilm X100T 16 MP Digital Camera (Silver)",
+    "name": "Simper",
     "image": "images/product_1.png",
     "thumbnail": "images/product_1.png",
     "shortDescription": "product 1",
@@ -12,7 +12,7 @@ export default [
   },
   {
     "id": "5ba7ce147337af3cb8dfb6c8",
-    "name": "Samsung CF591 Series Curved 27-Inch FHD Monitor",
+    "name": "Heat",
     "image": "images/product_2.png",
     "thumbnail": "images/product_2.png",
     "shortDescription": "product 2",
@@ -22,7 +22,7 @@ export default [
   },
   {
     "id": "5ba7ce147337af3cb8dfb6c9",
-    "name": "Blue Yeti USB Microphone Blackout Edition",
+    "name": "Rabbit Mid-Autumn",
     "image": "images/product_3.png",
     "thumbnail": "images/product_3.png",
     "shortDescription": "product 3",
@@ -32,7 +32,7 @@ export default [
   },
   {
     "id": "5ba7ce147337af3cb8dfb6ca",
-    "name": "DYMO LabelWriter 450 Turbo Thermal Label Printer",
+    "name": "Mimic Shirt",
     "image": "images/product_4.png",
     "thumbnail": "images/product_4.png",
     "shortDescription": "product 4",
@@ -42,7 +42,7 @@ export default [
   },
   {
     "id": "5ba7ce147337af3cb8dfb6cb",
-    "name": "Pryma Headphones, Rose Gold & Grey",
+    "name": "Meta Jacket",
     "image": "images/product_5.png",
     "thumbnail": "images/product_5.png",
     "shortDescription": "product 5",
@@ -52,7 +52,7 @@ export default [
   },
   {
     "id": "5ba7ce147337af3cb8dfb6cc",
-    "name": "Fujifilm X100T 16 MP Digital Camera (Silver)",
+    "name": "Rabbit Toy Pink Shirt",
     "image": "images/product_6.png",
     "thumbnail": "images/product_6.png",
     "shortDescription": "product 6",
@@ -62,7 +62,7 @@ export default [
   },
   {
     "id": "5ba7ce147337af3cb8dfb6cd",
-    "name": "Samsung CF591 Series Curved 27-Inch FHD Monitor",
+    "name": "Smiley Tie Dye",
     "image": "images/product_7.png",
     "thumbnail": "images/product_7.png",
     "shortDescription": "product 7",
@@ -72,7 +72,7 @@ export default [
   },
   {
     "id": "5ba7ce147337af3cb8dfb6ce",
-    "name": "Blue Yeti USB Microphone Blackout Edition",
+    "name": "Gummy",
     "image": "images/product_8.png",
     "thumbnail": "images/product_8.png",
     "shortDescription": "product 8",
@@ -82,7 +82,7 @@ export default [
   },
   {
     "id": "5ba7ce147337af3cb8dfb6cf",
-    "name": "DYMO LabelWriter 450 Turbo Thermal Label Printer",
+    "name": "Basicism",
     "image": "images/product_9.png",
     "thumbnail": "images/product_9.png",
     "shortDescription": "product 9",
@@ -92,7 +92,7 @@ export default [
   },
   {
     "id": "5ba7ce147337af3cb8dfb6d0",
-    "name": "Pryma Headphones, Rose Gold & Grey",
+    "name": "Tamagotchi Sweater",
     "image": "images/product_10.png",
     "thumbnail": "images/product_10.png",
     "shortDescription": "product 10",

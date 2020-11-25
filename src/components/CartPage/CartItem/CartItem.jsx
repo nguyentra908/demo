@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import './CartItem.css';
+import "./CartItem.css";
 
 export default class CartItem extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.changeQuanlity = this.changeQuanlity.bind(this);
     this.onClickRemove = this.onClickRemove.bind(this);
   }
 
-  changeQuanlity (value) {
+  changeQuanlity(value) {
     if (!value) return;
 
     const { onUpdateAmount } = this.props;
@@ -19,7 +19,7 @@ export default class CartItem extends Component {
     }
   }
 
-  onClickRemove (productId) {
+  onClickRemove(productId) {
     if (!productId) return;
 
     const { onRemoveItem } = this.props;
@@ -28,26 +28,39 @@ export default class CartItem extends Component {
     }
   }
 
-  render () {
+  render() {
     const { product, amount } = this.props.item;
     return (
       <tr>
         <td>
-          <img src={product.thumbnail} alt={product.thumbnail}/>
+          <img
+            style={{ width: "200px", height: "200px" }}
+            src={`assets/${product.thumbnail}`}
+            alt={product.thumbnail}
+          />
         </td>
         <td>
           <h4>{product.name}</h4>
-          <h5>Price: $ {product.salePrice}</h5>
+          <h5>Giá: $ {product.salePrice}</h5>
         </td>
         <td>
           <div className="quantity_selector">
-            <span className="minus" onClick={() => this.changeQuanlity(-1)}><i className="fa fa-minus" aria-hidden="true"></i></span>
+            <span className="minus" onClick={() => this.changeQuanlity(-1)}>
+              <i className="fa fa-minus" aria-hidden="true" />
+            </span>
             <span>{amount}</span>
-            <span className="plus" onClick={() => this.changeQuanlity(1)}><i className="fa fa-plus" aria-hidden="true"></i></span>
+            <span className="plus" onClick={() => this.changeQuanlity(1)}>
+              <i className="fa fa-plus" aria-hidden="true" />
+            </span>
           </div>
         </td>
         <td>
-          <button onClick={() => this.onClickRemove(product.id)} className="btn btn-remove btn-danger">Remove</button>
+          <button
+            onClick={() => this.onClickRemove(product.id)}
+            className="btn btn-remove btn-danger"
+          >
+            Remove
+          </button>
         </td>
       </tr>
     );

@@ -10,7 +10,6 @@ import './ProductList.css';
 class ProductList extends Component {
   constructor (props) {
     super(props);
-
     this.onClickProduct = this.onClickProduct.bind(this);
     this.onAddProduct = this.onAddProduct.bind(this);
   }

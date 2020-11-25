@@ -1,24 +1,24 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
-import TabSelector from './TabSelector/TabSelector';
-import AdditionalInformation from './AdditionalInformation/AdditionalInformation';
-import Reviews from './Reviews/Reviews';
-import Descriptions from './Descriptions/Descriptions';
+import TabSelector from "./TabSelector/TabSelector";
+import AdditionalInformation from "./AdditionalInformation/AdditionalInformation";
+import Reviews from "./Reviews/Reviews";
+import Descriptions from "./Descriptions/Descriptions";
 
-import './Tabs.css';
+import "./Tabs.css";
 
 export default class Tabs extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
 
     this.state = {
-      selectedTabName: 'description'
-    }
+      selectedTabName: "description"
+    };
 
     this.onTabChanged = this.onTabChanged.bind(this);
   }
 
-  onTabChanged (tabName) {
+  onTabChanged(tabName) {
     if (!tabName) return;
 
     this.setState({
@@ -26,16 +26,18 @@ export default class Tabs extends Component {
     });
   }
 
-  render () {
-    return(
+  render() {
+    return (
       <div className="tabs_section_container">
-		    <div className="container">
-          <TabSelector onTabChanged={this.onTabChanged}></TabSelector>
+        <div className="container">
+          <TabSelector onTabChanged={this.onTabChanged} />
           <div className="row">
             <div className="col">
-            {this.state.selectedTabName === 'description' && <Descriptions></Descriptions>}
-            {this.state.selectedTabName === 'additionalInformation' && <AdditionalInformation></AdditionalInformation>}
-            {this.state.selectedTabName === 'review' && <Reviews></Reviews>}
+              {this.state.selectedTabName === "description" && <Descriptions />}
+              {this.state.selectedTabName === "additionalInformation" && (
+                <AdditionalInformation />
+              )}
+              {this.state.selectedTabName === "review" && <Reviews />}
             </div>
           </div>
         </div>
