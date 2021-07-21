@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-
+import history from '../../history';
+import './FormLogin.css';
 class FormLogin extends Component {
   constructor(props) {
     super(props);
@@ -27,14 +28,14 @@ class FormLogin extends Component {
     if (!re.test(email)) {
       returnData = {
         error: true,
-        msg: "Không đúng định dạng email"
+        msg: "Incorrect email format"
       };
     }
     //Kiểm tra password
-    if (password.length < 8) {
+    if ( password.length < 8) {
       returnData = {
         error: true,
-        msg: "Mật khẩu phải lớn hơn 8 ký tự"
+        msg: "Password must be greater than 8 characters"
       };
     }
     return returnData;
@@ -51,43 +52,69 @@ class FormLogin extends Component {
     if (validation.error) {
       alert(validation.msg);
     } else {
-      alert("Đăng nhập thành công");
+      this.setState({
+       email: "",
+       password:""
+      }, ()=> alert("Sign In successful"));
+      
+     
     }
   }
+
+  onRedirectToRegister(){
+    window.scrollTo(0, 0) 
+    history.push('/register');
+  }
+
   render() {
+    
     return (
-      <div className="container" style={{ paddingTop: "15%" }}>
-        <h3>ĐĂNG NHẬP</h3>
-        <div className="login" style={{ width: "500px" }}>
-          <form
-            onSubmit={e => {
-              this.submitForm(e);
-            }}
-          >
-            <div className="form-group" />
-            <label htmlFor="pwd">Nhập Email:</label>
-            <input
-              type="text"
-              className="form-control"
-              name="email"
-              placeholder="Nhập Email"
-              onChange={e => this.changeInputValue(e)}
-            />
-            <div className="form-group">
-              <label htmlFor="pwd">Nhập Password:</label>
+      <div className="login_container" style={{ paddingTop: "15%" }}>
+        <div className="login-page">
+          <div className="login" >
+            <div className="login-header-text">Sign In here</div>
+            <form className="form_login"
+              onSubmit={e => {
+                this.submitForm(e);
+              }}
+            >
+              <div className="form-group" />
+              
               <input
-                type="password"
+                type="text"
                 className="form-control"
-                name="password"
-                placeholder="Enter password"
+                name="email"
+                placeholder="Enter Username"
+                value={this.state.email}
                 onChange={e => this.changeInputValue(e)}
               />
-            </div>
-            <button type="submit" className="btn btn-primary">
-              Đăng nhập
-            </button>
-          </form>
+              <div className="form-group" style={{ marginTop: '1rem' }}>
+                <input
+                  type="password"
+                  className="form-control"
+                  name="password"
+                  placeholder="Enter Password"
+                  onChange={e => this.changeInputValue(e)}
+                  value={this.state.password}
+                />
+              </div>
+              <div className="form-group"  style={{ marginTop: '1rem' }}>
+                <input
+                  id="btnsubmit"
+                  type="submit"
+                  className="form-control"
+                  value="Sign In"
+                
+                />
+              </div>
+              <div className="form-group" style={{ marginTop: '1rem', display:'flex', justifyContent:'center' }}>
+                <span style={{opacity: 0.8}}>Do not have an account? &nbsp;</span>
+                <span onClick={()=>this.onRedirectToRegister()} style={{color: 'orange'}}>Sign Up</span>
+              </div>
+            </form>
+          </div>
         </div>
+
       </div>
     );
   }

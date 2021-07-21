@@ -1,16 +1,14 @@
 .product_section_container
 {
 	margin-top: 150px;
+	margin-bottom: 100px;
 }
-.product_section
-{
 
-}
 .main_content
 {
 	float: left;
 	width: calc(100% - 200px);
-	padding-left: 34px;
+	padding-left: 20px;
 }
 .products_iso
 {
@@ -128,4 +126,23 @@
 .product_sorting_container_bottom .pages .page_current span
 {
 	color: #FFFFFF;
+}
+.pagination{
+	flex-direction: row;
+	float: right;
+}
+
+.button-pagination {
+	padding: 13px;
+    border: 1px;
+	background-color: antiquewhite;
+	margin-right: 5px;
+}
+
+.selected-page-style {
+	font-weight: bold;
+	background-color: #e5b97d !important;
+}
+.scroll_top:hover{
+background-color: #dad6d6 !important;
 }

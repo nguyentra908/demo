@@ -1,26 +1,37 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
 class FilterByColor extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedColor: "Pink"
+    }
+  }
+
+  onValueChange = (e) => {
+    this.setState({ selectedColor: e.target.value });
+  }
   render() {
+    const colors = ["Pink", "Purple", "Orange", "Black", "White"];
     return (
       <div className="sidebar_section">
         <div className="sidebar_title">
           <h5>Color</h5>
         </div>
+        {
+          colors.map((e) => (
+            <div style={{display: 'flex', flexDirection:'row'}}>
+              <input type="radio"
+                value={e}
+                checked={this.state.selectedColor === e}
+                onChange={this.onValueChange} />
+                <div style={{backgroundColor: e.toLowerCase(), width: 50}}>{e}</div>
+            </div>
 
-        <ul className="checkboxes">
-          <li><i className="fa fa-square-o" aria-hidden="true" /><span>Black</span></li>
-          <li className="active"><i className="fa fa-square" aria-hidden="true" /><span>Pink</span></li>
-          <li><i className="fa fa-square-o" aria-hidden="true" /><span>White</span></li>
-          <li><i className="fa fa-square-o" aria-hidden="true" /><span>Yellow</span></li>
-          <li><i className="fa fa-square-o" aria-hidden="true" /><span>Green</span></li>
-        </ul>
-
-        <div className="show_more">
-          <span><span>+</span>Show more</span>
-        </div>
+          ))
+        }
       </div>
-    );
+    )
   }
 }
 

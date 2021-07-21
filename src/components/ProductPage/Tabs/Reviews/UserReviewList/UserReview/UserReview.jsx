@@ -3,9 +3,6 @@ import React, { Component } from "react";
 import "./UserReview.css";
 
 export default class UserReview extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (

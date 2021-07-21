@@ -17,6 +17,10 @@ export default class TabSelector extends Component {
   changeSelectedTab(tabName) {
     if (!tabName) return;
 
+    if(tabName === 'back'){
+      window.history.back()
+    }
+
     this.setState({
       selectedTabName: tabName
     });
@@ -39,24 +43,18 @@ export default class TabSelector extends Component {
                 })}
                 onClick={() => this.changeSelectedTab("description")}
               >
-                <span>Mô tả</span>
+                <span>Description</span>
               </li>
-              <li
-                className={cx("tab", {
-                  active: this.state.selectedTabName === "additionalInformation"
-                })}
-                onClick={() => this.changeSelectedTab("additionalInformation")}
-              >
-                <span>Thêm thông tin</span>
-              </li>
+              
               <li
                 className={cx("tab", {
                   active: this.state.selectedTabName === "review"
                 })}
                 onClick={() => this.changeSelectedTab("review")}
               >
-                <span>Nhận xét (2)</span>
+                <span>Comment (2)</span>
               </li>
+            
             </ul>
           </div>
         </div>

@@ -62,11 +62,17 @@
 }
 
 .review_submit_btn {
-  width: 170px;
+
   border: none;
   color: #FFFFFF;
   text-transform: uppercase;
   font-size: 14px;
   font-weight: 500;
+  width: 100px;
+  height: 40px;
   cursor: pointer;
+  background-color:  #fe4c50;
+}
+.review_submit_btn:hover {
+  background-color:  #FE7C7F !important;
 }

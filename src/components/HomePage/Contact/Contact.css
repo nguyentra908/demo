@@ -1,7 +1,12 @@
 .contact {
-    width: 60%;
-   
+    
     margin: 15% auto;
+    margin-bottom: 5%;
+    
+}
+.contact_contain{
+    width: 60%;
+    margin: auto;
 }
 .contact_title {
     text-transform: uppercase;
@@ -9,15 +14,25 @@
     font-size: 30px;
     font-weight: 700;
     color: #5b5b62;
+    padding-bottom: 30px;
 }
 .buton_send {  
     background: #fe4c50;
     width: 110px;
     margin: auto;
-    height: 30px;
+    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     color: white;
-    border-radius: 5px;
+    border-radius: 3px;
+}
+.buton_send :hover{
+    background: #f88f91 !important;
+}
+.map{
+    width: 100%;
+    height: 600px;
+    border: 0;
+    padding-bottom: 40px;
 }

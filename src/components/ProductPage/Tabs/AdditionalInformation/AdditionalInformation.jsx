@@ -3,9 +3,6 @@ import React, { Component } from "react";
 import "./AdditionalInformation.css";
 
 export default class AdditionalInformation extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (

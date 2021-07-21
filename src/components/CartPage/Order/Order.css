@@ -1,0 +1,109 @@
+
+.item {
+    margin: auto;
+}
+.total-price-row {
+    display: flex;
+    flex-direction: row-reverse;
+}
+.order-header {
+    font-size: 21px;
+}
+.payment-info- {
+    
+    height: fit-content;
+    margin-bottom: 16px;
+    border: 2px solid #db5246;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+
+.container-radio-1 {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }
+  
+  /* Hide the browser's default radio button */
+  .container-radio-1 input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+  }
+  
+  /* Create a custom radio button */
+  .checkmark-radio-1 {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    height: 15px;
+    width: 15px;
+    border: 0.1px solid;
+    border-radius: 50%;
+  }
+  
+  /* On mouse-over, add a grey background color */
+  .container-radio-1:hover input~.checkmark-radio-1 {
+    background-color: #ccc;
+  }
+  
+  /* When the radio button is checked, add a blue background */
+  .container-radio-1 input:checked~.checkmark-radio-1 {
+    /* background-color: #2196F3; */
+  }
+  
+  /* Create the indicator (the dot/circle - hidden when not checked) */
+  .checkmark-radio-1:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  /* Show the indicator (dot/circle) when checked */
+  .container-radio-1 input:checked~.checkmark-radio-1:after {
+    display: block;
+  }
+  
+  /* Style the indicator (dot/circle) */
+  .container-radio-1 .checkmark-radio-1:after {
+    top: 3px;
+    left: 3px;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #b5aec4;
+  }
+  .red_button
+  {
+    display: -webkit-inline-box;
+    display: -moz-inline-box;
+    display: -ms-inline-flexbox;
+    display: -webkit-inline-flex;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: auto;
+    height: 40px;
+    background: #fe4c50;
+    border-radius: 3px;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+  }
+  .red_button:hover
+  {
+    background: #FE7C7F !important;
+  }
+  .oder_page{
+    margin-bottom: 50px;
+  }

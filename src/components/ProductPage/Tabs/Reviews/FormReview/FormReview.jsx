@@ -3,9 +3,6 @@ import React, { Component } from "react";
 import "./FormReview.css";
 
 export default class FormReview extends Component {
-  constructor(props) {
-    super(props);
-  }
 
   render() {
     return (
@@ -13,7 +10,7 @@ export default class FormReview extends Component {
         <div className="add_review">
           <form id="review_form" action="post">
             <div>
-              <h1>Thêm nhận xét</h1>
+              <h1> Add Comment</h1>
               <input
                 id="review_name"
                 className="form_input input_name"
@@ -66,7 +63,7 @@ export default class FormReview extends Component {
               <button
                 id="review_submit"
                 type="submit"
-                className="red_button review_submit_btn trans_300"
+                className=" review_submit_btn trans_300"
                 value="Submit"
               >
                 SAVE

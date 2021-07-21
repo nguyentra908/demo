@@ -16,7 +16,7 @@
 {
 	display: inline-block;
 }
-.navbar_menu li a
+.navbar_menu li span
 {
 	display: block;
 	color: #1e1e27;
@@ -25,7 +25,7 @@
 	text-transform: uppercase;
 	padding: 20px;
 }
-.navbar_menu li a:hover
+.navbar_menu li span:hover
 {
 	color: #b5aec4;
 }
@@ -55,15 +55,16 @@
 	-o-transition: color 0.3s ease;
 	transition: color 0.3s ease;
 }
-.navbar_user li a:hover
+.navbar_user li a :hover
 {
-	color: #b5aec4;
+	color: #aba3be;
 }
 .checkout a
 {
 	background: #eceff6;
 	border-radius: 50%;
 }
+
 .checkout_items
 {
 
@@ -80,4 +81,15 @@
 	background: #fe4c50;
 	font-size: 12px;
 	color: #FFFFFF;
+}
+
+.image-banner{
+	height: 90px;
+    width: 245px;
+    opacity: 0.9;
+    border-radius: 25%;
+}
+
+.shopping-cart-icon {
+	font-size: 20px;
 }

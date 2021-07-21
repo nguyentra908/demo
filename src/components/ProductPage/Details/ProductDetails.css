@@ -8,12 +8,12 @@
 }
 
 .product_details_title p {
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .free_delivery {
   background: #f5f5f5;
-  margin-top: 53px;
+  margin-top: 40px;
 }
 
 .free_delivery i {
@@ -52,7 +52,7 @@
   color: #fe4c50;
   font-weight: 500;
   line-height: 30px;
-  margin-top: 2px;
+  margin-top: 27px;
 }
 
 .star_rating {
@@ -128,9 +128,9 @@
 
 .add_to_cart_button {
   width: 160px;
-  margin-left: 19px;
+ margin-top: 27px;
   padding: 0 20px;
-  font-size: 12px !important;
+  font-size: 14px !important;
 }
 
 .product_favorite {

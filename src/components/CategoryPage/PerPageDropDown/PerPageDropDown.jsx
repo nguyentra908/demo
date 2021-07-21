@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 
 export default class PerPageDropDown extends Component {
   constructor (props) {
@@ -18,13 +17,14 @@ export default class PerPageDropDown extends Component {
   }
 
   render () {
+    const { options, limitedValue } = this.props;
     return (
       <li>
         <span>Show</span>
-        <span>{this.props.selectedValue}</span>
+        <span>{limitedValue}</span>
         <i className="fa fa-angle-down"></i>
         <ul>
-          {this.props.values.map(value => (
+          { options.map((value) => (
             <li
               key={value}
               onClick={() => this.onClickHandle(value)}

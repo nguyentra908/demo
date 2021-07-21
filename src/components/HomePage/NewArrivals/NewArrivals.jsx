@@ -2,12 +2,9 @@ import React, { Component } from 'react';
 import { connect } from "react-redux";
 import _ from 'lodash';
 import memoize from 'memoize-one';
-import products from '../../../services/data/products';
 import { ProductList } from '../../shared';
 import CategoryOptions from './CategoryOptions/CategoryOptions';
 
-import { fetchCategories } from '../../../actions/CategoryActions';
-import { fetchProducts } from '../../../actions/ProductActions';
 
 import './NewArrivals.css';
 
@@ -19,16 +16,6 @@ class NewArrivals extends Component {
       filteredProducts: [],
       selectedCategoryId: ''
     }
-
-    this.onProductsChange = memoize(
-      () => {
-        if (this.state && this.state.filteredProducts.length > 0) return;
-
-        this.setState({
-          filteredProducts: products
-        });
-      }
-    )
 
     this.onCategoriesChange = memoize(
       (categories) => {
@@ -52,9 +39,14 @@ class NewArrivals extends Component {
     this.onSelectedCategoryChanged = this.onSelectedCategoryChanged.bind(this);
   }
 
+  filterProduct(){
+    return this.props.products.filter(item=> item.salePrice < item.originalPrice)
+  }
+
   componentDidMount() {
-    this.props.dispatch(fetchCategories());
-    this.props.dispatch(fetchProducts());
+    this.setState({
+      filteredProducts: this.filterProduct()
+    })
   }
 
   onSelectedCategoryChanged(category) {
@@ -69,7 +61,6 @@ class NewArrivals extends Component {
   }
 
   render() {
-    this.onProductsChange(this.props.products);
     this.onCategoriesChange(this.props.categories);
 
     return (
@@ -78,19 +69,17 @@ class NewArrivals extends Component {
           <div className="row">
             <div className="col text-center">
               <div className="section_title new_arrivals_title">
-                <h2>Sản phẩm mới</h2>
+                <h2>Sale Products</h2>
               </div>
             </div>
           </div>
-          {!this.props.loadingCategories && <CategoryOptions
+          {/* {<CategoryOptions
             categories={this.props.categories}
             selectedCategoryId={this.state.selectedCategoryId}
             onSelectedCategoryChanged={this.onSelectedCategoryChanged}>
-          </CategoryOptions>}
+          </CategoryOptions>} */}
 
-          {!this.props.loadingProducts && <ProductList
-            products={this.state.filteredProducts}>
-          </ProductList>}
+          <ProductList products={this.state.filteredProducts}/>
         </div>
       </div>
     );
@@ -98,12 +87,8 @@ class NewArrivals extends Component {
 }
 
 const mapStateToProps = state => ({
-  products: state.products.items,
-  loadingProducts: state.products.loading,
-  errorProducts: state.products.error,
+  products: state.products.products,
   categories: state.categories.items,
-  loadingCategories: state.categories.loading,
-  errorCategories: state.categories.error
 });
 
 export default connect(mapStateToProps)(NewArrivals);

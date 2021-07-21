@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import TabSelector from "./TabSelector/TabSelector";
 import AdditionalInformation from "./AdditionalInformation/AdditionalInformation";
 import Reviews from "./Reviews/Reviews";
@@ -10,20 +9,34 @@ import "./Tabs.css";
 export default class Tabs extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       selectedTabName: "description"
     };
-
     this.onTabChanged = this.onTabChanged.bind(this);
   }
 
   onTabChanged(tabName) {
     if (!tabName) return;
-
     this.setState({
       selectedTabName: tabName
     });
+  }
+
+
+  renderTabView() {
+    const { selectedTabName } = this.state;
+    const { product } = this.props;
+    switch (selectedTabName) {
+      case "description":
+        return <Descriptions product={product}/>
+      // case "additionalInformation":
+      //   return <AdditionalInformation />
+      case "review":
+        return <Reviews />
+      default:
+        return <Reviews />;
+    }
+
   }
 
   render() {
@@ -33,11 +46,9 @@ export default class Tabs extends Component {
           <TabSelector onTabChanged={this.onTabChanged} />
           <div className="row">
             <div className="col">
-              {this.state.selectedTabName === "description" && <Descriptions />}
-              {this.state.selectedTabName === "additionalInformation" && (
-                <AdditionalInformation />
-              )}
-              {this.state.selectedTabName === "review" && <Reviews />}
+              {
+                this.renderTabView()
+              }
             </div>
           </div>
         </div>

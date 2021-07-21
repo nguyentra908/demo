@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import "./TopNavigation.css";
-
+import history from '../../../../history';
 export default class TopNavigation extends Component {
+  onLogin(url) {
+    window.scrollTo(0, 0)
+    history.push(url);
+  }
   render() {
     return (
       <div className="top_nav">
@@ -10,52 +13,13 @@ export default class TopNavigation extends Component {
           <div className="row">
             <div className="col-md-6">
               <div className="top_nav_left">
-                Miễn phí vận chuyển cho hóa đơn trên 100.000 đ
+
+                Free shipping for invoices over 100.000 vnđ
               </div>
             </div>
-            <div className="col-md-6 text-right">
-              <div className="top_nav_right">
-                <ul className="top_nav_menu">
-                  <li className="language">
-                    <a href="#">
-                      Tiếng Việt
-                      <i className="fa fa-angle-down" />
-                    </a>
-                    <ul className="language_selection">
-                      <li>
-                        <a href="#">Tiếng Anh</a>
-                      </li>
-                      <li>
-                        <a href="#">Tiếng Hàn</a>
-                      </li>
-                      <li>
-                        <a href="#">Tiếng Trung</a>
-                      </li>
-                      <li>
-                        <a href="#">Tiếng Nhật</a>
-                      </li>
-                    </ul>
-                  </li>
-                  <li className="account">
-                    <a href="#">
-                      Tài Khoản
-                      <i className="fa fa-angle-down" />
-                    </a>
-                    <ul className="account_selection">
-                      <li>
-                        <a href="#">
-                          <Link to="/Login">Đăng nhập</Link>
-                        </a>
-                      </li>
-                      <li>
-                        <a href="#">
-                          <Link to="/Register">Đăng ký</Link>
-                        </a>
-                      </li>
-                    </ul>
-                  </li>
-                </ul>
-              </div>
+            <div className="col-md-6 login-container">
+              <div className="sign-in" onClick={() => this.onLogin('/login')}> Sign In </div>
+              <div className="sign-up" onClick={() => this.onLogin('/register')}> Sign Up </div>
             </div>
           </div>
         </div>

@@ -37,7 +37,7 @@ export default class Deals extends Component {
                     <div className="timer_unit">Giây</div>
                   </li>
                 </ul>
-                <div className="red_button deal_ofthe_week_button"><a href="#">shop now</a></div>
+              
               </div>
             </div>
           </div>

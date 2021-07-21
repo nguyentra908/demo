@@ -1,271 +1,142 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import queryString from "query-string";
-import { withRouter } from "react-router-dom";
-
-import SideBar from "../../components/CategoryPage/Sidebar/Sidebar";
+import { filterProductList, setProductPagination, SET_LIST_PRODUCT_PAGINATION, RESET_LIST_PRODUCT_PAGINATION } from "../../actions/ProductActions";
+import Filter from "../../components/CategoryPage/Sidebar/Filter";
+import productsData from "../../services/data/products";
+import "./CategoryPage.css";
 import {
   ShippingInformation,
   ProductList,
   Breadcrumb
 } from "../../components/shared";
-import SortingDropDown from "../../components/CategoryPage/SortingDropDown/SortingDropDown";
-import PerPageDropDown from "../../components/CategoryPage/PerPageDropDown/PerPageDropDown";
-// import PageNavigationBar from '../../components/CategoryPage/PageNavigationBar/PageNavigationBar';
-
-import products from "../../services/data/products";
-
-import { fetchCategories } from "../../actions/CategoryActions";
-import config from "../../config";
-
-import "./CategoryPage.css";
-import FilterByPrice from "../../components/CategoryPage/Sidebar/FilterByPrice/FilterByPrice";
-
-const perPageValues = [6, 12, 24];
-const bouncePrice = {
-  min: 0,
-  max: 1000
-};
-const sortOptions = [
-  {
-    name: "Default",
-    pattern: null
-  },
-  {
-    name: "Price",
-    pattern: "salePrice DESC"
-  },
-  // {
-  //   name: 'Price ASC',
-  //   pattern: "salePrice ASC"
-  // },
-  {
-    name: "Name",
-    pattern: "name ASC"
-  }
-];
 
 class CategoryPage extends Component {
   constructor(props) {
     super(props);
-
-    const searchParams = queryString.parse(this.props.location.search);
-    const { limit, page, minPrice, maxPrice, category, sort } = searchParams;
-
     this.state = {
-      products: products,
-      pagination: {
-        skip: 0,
-        limit: 6,
-        total: 0
-      },
-      loading: false,
-      error: null
+      products: productsData,
+      selectedPage: 0,
     };
+    this.refFilter = React.createRef();
+  }
 
-    this.filterAndSort = {
-      limit: limit || perPageValues[0],
-      selectedCategoryId: category || "all",
-      currentPage: page || 1,
-      filterPrice: {
-        min: minPrice || 0,
-        max: maxPrice || 600
-      },
-      selectedOption: sort
-        ? sortOptions.find(value => {
-            if (value.name === sort) {
-              return value;
-            }
-          })
-        : sortOptions[0]
-    };
-
-    this.onPerPageValueChange = this.onPerPageValueChange.bind(this);
-    this.onSelectedCategoryChanged = this.onSelectedCategoryChanged.bind(this);
-    this.onPageChanged = this.onPageChanged.bind(this);
-    this.onSortOptionChanged = this.onSortOptionChanged.bind(this);
-    this.onFilterPriceChanged = this.onFilterPriceChanged.bind(this);
+  getProductByPageIndex(selectedPage, data) {
+    if (!data || (data && !data.length)) {
+      this.setState({
+        products: []
+      })
+      return;
+    }
+    this.setState({
+      products: data[selectedPage].productList
+    })
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchCategories());
-    this.updateProductList();
+    const { products } = this.props;
+    const { selectedPage } = this.state;
+    this.getProductByPageIndex(selectedPage, products);
   }
 
-  updateProductList() {
-    const filter = {
-      limit: +this.filterAndSort.limit,
-      skip: this.filterAndSort.limit * (this.filterAndSort.currentPage - 1),
-      where: {
-        salePrice: {
-          gt: +this.filterAndSort.filterPrice.min,
-          lt: +this.filterAndSort.filterPrice.max
-        }
+  componentWillUnmount() {
+    this.props.dispatch({
+      type: RESET_LIST_PRODUCT_PAGINATION
+    })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.products !== nextProps.products) {
+      this.getProductByPageIndex(this.state.selectedPage, nextProps.products)
+    }
+  }
+
+  onFilterClicked = () => {
+    const refFilterState = this.refFilter.current.state;
+    const filteredProduct = filterProductList({ filterPrice: refFilterState.rangePrice, filterCategory: refFilterState.selectedCategory, filterColor: refFilterState.selectedColor })
+    const paginationProductData = setProductPagination(filteredProduct);
+    this.setState({
+      selectedPage: 0
+    }, () => this.props.dispatch({
+      type: SET_LIST_PRODUCT_PAGINATION,
+      payload: { listProductPagination: paginationProductData }
+    }));
+  }
+
+  onChangeSelectedPage = (selectedPage) => {
+    if (selectedPage === this.state.selectedPage) {
+      return;
+    }
+    const { products } = this.props;
+    window.scrollTo(0, 0)
+    this.setState({ selectedPage }, () => this.getProductByPageIndex(selectedPage, products));
+  }
+
+  renderPagination = () => {
+    const { selectedPage } = this.state;
+    const { products } = this.props;
+    if (!products || (products && !products.length)) {
+      return null;
+    }
+    const arr = [];
+    for (let index = 0; index < products.length; index++) {
+      let selectedPageStyle = 'selected-page-style';
+      if (index !== selectedPage) {
+        selectedPageStyle = ''
       }
-    };
-
-    if (
-      this.filterAndSort.selectedCategoryId !== "" &&
-      this.filterAndSort.selectedCategoryId !== "all"
-    ) {
-      filter.where.categoryId = this.filterAndSort.selectedCategoryId;
+      const btn = <button onClick={() => { this.onChangeSelectedPage(index) }}
+        className={`button-pagination ${selectedPageStyle}`} key={index}>{index + 1}</button>
+      arr.push(btn);
     }
-    if (this.filterAndSort.selectedOption.pattern) {
-      filter.order = [this.filterAndSort.selectedOption.pattern];
+    return (
+      <div className="pagination" style={{ marginTop: "10px" }}> { arr} </div>
+    )
+
+  }
+
+  renderProductList() {
+    const { products } = this.state;
+    if (!products || (products && !products.length)) {
+      return (<h4 style={{textAlign: "center"}}>
+         No products!
+      </h4>)
     }
-
-    this.generateQueryString();
-    this.fetchProducts(filter);
+    return (
+      <div className="main_content">
+        <div className="product_sorting_container product_sorting_container_top" style={{ marginBottom: 10 }} >
+        </div>
+        <ProductList products={products} />
+      </div>
+    )
   }
 
-  fetchProducts(filter) {
-    let url = config.url.product;
-    if (filter) {
-      url += `?filter=${JSON.stringify(filter)}`;
-    }
-    fetch(url)
-      .then(this.handleErrors)
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          products: json.body,
-          pagination: json.pagination
-        });
-      })
-      .catch(error => this.setState({ error }));
-  }
-
-  static handleErrors(response) {
-    if (!response.ok) {
-      throw Error(response.statusText);
-    }
-    return response;
-  }
-
-  generateQueryString() {
-    let queryString = "?";
-
-    queryString += `limit=${this.filterAndSort.limit}`;
-    queryString += `&page=${this.filterAndSort.currentPage}`;
-    queryString += `&minPrice=${this.filterAndSort.filterPrice.min}`;
-    queryString += `&maxPrice=${this.filterAndSort.filterPrice.max}`;
-    queryString += `&category=${this.filterAndSort.selectedCategoryId}`;
-    queryString += `&sort=${this.filterAndSort.selectedOption.name}`;
-
-    this.props.history.push({
-      pathname: this.props.location.pathname,
-      search: queryString
-    });
-  }
-
-  onPerPageValueChange(value) {
-    if (!value) return;
-
-    this.filterAndSort.limit = value;
-    this.updateProductList();
-  }
-
-  onSelectedCategoryChanged(category) {
-    if (!category || !category.id) return;
-
-    this.filterAndSort.selectedCategoryId = category.id;
-    this.updateProductList();
-  }
-
-  onPageChanged(value) {
-    if (!value) return;
-
-    this.filterAndSort.currentPage = value;
-    this.updateProductList();
-  }
-
-  onSortOptionChanged(option) {
-    if (!option) return;
-
-    this.filterAndSort.selectedOption = option;
-    this.updateProductList();
-  }
-
-  onFilterPriceChanged(value) {
-    if (!value) return;
-
-    this.filterAndSort.filterPrice = value;
-    this.updateProductList();
+  scrollToTop = () => {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
   }
 
   render() {
-    const { loading, products, pagination } = this.state;
-
+    const { categories } = this.props;
     return (
       <div>
+
         <div className="container product_section_container">
-          <div className="row">
-            <div className="col product_section clearfix">
-              <Breadcrumb />
-              <SideBar
-                onSelectedCategoryChanged={this.onSelectedCategoryChanged}
-                categories={this.props.categories}
-                bounce={bouncePrice}
-                filterPrice={this.filterAndSort.filterPrice}
-                onFilterPriceChanged={this.onFilterPriceChanged}
-              />
-
-              <div className="main_content">
-                <div className="products_iso">
-                  <div className="row">
-                    <div className="col">
-                      <div className="product_sorting_container product_sorting_container_top">
-                        <ul className="product_sorting">
-                          <SortingDropDown
-                            options={sortOptions}
-                            selectedOption={this.filterAndSort.selectedOption}
-                            onSortOptionChanged={this.onSortOptionChanged}
-                          />
-                          <PerPageDropDown
-                            selectedValue={this.filterAndSort.limit}
-                            values={perPageValues}
-                            onPerPageValueChange={this.onPerPageValueChange}
-                          />
-                        </ul>
-                        {/* {pagination && (
-                          <PageNavigationBar
-                            total={Math.ceil(
-                              pagination.total / pagination.limit
-                            )}
-                            current={this.filterAndSort.currentPage}
-                            onPageChanged={this.onPageChanged}
-                          />
-                        )} */}
-                      </div>
-
-                      {!loading && <ProductList products={products} />}
-
-                      <div className="product_sorting_container product_sorting_container_bottom clearfix">
-                        <ul className="product_sorting">
-                          <PerPageDropDown
-                            selectedValue={this.filterAndSort.limit}
-                            values={perPageValues}
-                            onPerPageValueChange={this.onPerPageValueChange}
-                          />
-                        </ul>
-                        {/* {pagination && (
-                          <PageNavigationBar
-                            total={Math.ceil(
-                              pagination.total / pagination.limit
-                            )}
-                            current={this.filterAndSort.currentPage}
-                            onPageChanged={this.onPageChanged}
-                          />
-                        )} */}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="col product_section clearfix" style={{ marginTop: 10 }}>
+            <Breadcrumb ></Breadcrumb>
+            <Filter
+              ref={this.refFilter}
+              onSelectedCategoryChanged={this.onSelectedCategoryChanged}
+              categories={categories}
+              filterProduct={this.onFilterClicked}
+            />
+            {
+              this.renderProductList()
+            }
           </div>
+          {this.renderPagination()}
         </div>
+        <a className="scroll_top" style={{ width:"30px",height:"30px",backgroundColor:"#f3f3f3", textAlign:"center", borderRadius:"50%", float:"right",marginTop:"-40px", marginRight:"50px"}} onClick={() => { this.scrollToTop() }}>
+          <i class="fa fa-arrow-up" aria-hidden="true" style={{ marginTop:"5px", fontSize: 20, opacity: 0.5 }}></i>
+        </a>
         <ShippingInformation />
       </div>
     );
@@ -274,8 +145,8 @@ class CategoryPage extends Component {
 
 const mapStateToProps = state => ({
   categories: state.categories.items,
-  loadingCategories: state.categories.loading,
-  errorCategories: state.categories.error
+  products: state.products.listProductPagination,
+
 });
 
-export default withRouter(connect(mapStateToProps)(CategoryPage));
+export default connect(mapStateToProps)(CategoryPage);

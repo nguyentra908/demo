@@ -22,7 +22,6 @@ export function fetchCategories() {
   return dispatch => {
     dispatch(fetchCategoriesBegin());
     return fetch(config.url.category)
-      .then(handleErrors)
       .then(res => res.json())
       .then(json => {
         dispatch(fetchCategoriesSuccess([{
@@ -35,11 +34,4 @@ export function fetchCategories() {
       })
       .catch(error => dispatch(fetchCategoriesFailure(error)));
   };
-}
-
-function handleErrors(response) {
-  if (!response.ok) {
-    throw Error(response.statusText);
-  }
-  return response;
 }

@@ -1,52 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-
 import { ShippingInformation, Breadcrumb } from '../../components/shared';
 import ProductDetails from '../../components/ProductPage/Details/ProductDetails';
 import Tabs from '../../components/ProductPage/Tabs/Tabs';
-
-import { fetchAProduct } from '../../actions/ProductActions';
+import { getProductInfo } from '../../actions/ProductActions';
 import { addToCart } from '../../actions/CartActions';
-
 import './ProductPage.css';
 
 class ProductPage extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
-
     this.onAddProduct = this.onAddProduct.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     const id = this.props.match.params.id;
-    this.props.dispatch(fetchAProduct(id));
+    this.props.dispatch(getProductInfo(id));
   }
 
-  onAddProduct (product, amount) {
+  onAddProduct(product, amount) {
     if (!product || !amount) return;
-
     this.props.dispatch(addToCart(product, amount));
   }
 
-  render () {
+  render() {
+    const { product, loading } = this.props;
     return (
       <div>
         <div className="container single_product_container">
-		      <div className="row">
-			      <div className="col">
-              <Breadcrumb></Breadcrumb>
-            </div>
-          </div>
-
-          { !this.props.loading &&
-            !this.props.error &&
-            this.props.product && 
-          <ProductDetails
-          product={this.props.product}
-          onAddProduct={this.onAddProduct}
-          ></ProductDetails>}
+          {!loading && product &&
+            <ProductDetails
+              product={product}
+              onAddProduct={this.onAddProduct}
+            ></ProductDetails>}
         </div>
-        <Tabs></Tabs>
+        <Tabs product={product}></Tabs>
         <ShippingInformation></ShippingInformation>
       </div>
     );

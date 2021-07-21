@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import _ from 'lodash';
-
 import ThumbnailSelector from './ThumbnailSelector/ThumbnailSelector';
-
 import './Thumbnails.css';
 
 export default class Thumbnails extends Component {
@@ -12,7 +9,7 @@ export default class Thumbnails extends Component {
     const { images } = this.props;
 
     this.state = {
-      selectedImageUrl: images.length > 0 ? images[0] : ''
+      selectedImageUrl: images && images.length > 0 ? images[0] : ''
     }
 
     this.onSelectedImageChange = this.onSelectedImageChange.bind(this);

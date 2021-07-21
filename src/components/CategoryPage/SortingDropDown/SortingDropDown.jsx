@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-
 import './SortingDropDown.css';
 
 export default class SortingDropDown extends Component {

@@ -1,0 +1,273 @@
+.sidebar {
+  float: left;
+  width: 200px;
+  padding-right: 17px;
+}
+
+.sidebar_section {
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: solid 1px #ebebeb;
+  margin-left: 18px;
+}
+
+.sidebar_title h5 {
+  font-size: 15px;
+  margin-bottom: 21px;
+}
+
+.sidebar_categories li.active a {
+  background-color: #fe4c50;
+  color: white;
+}
+
+.sidebar_categories li.active:hover a {
+  background-color: #fe4c50;
+  color: white;
+}
+
+.sidebar_categories li a {
+  font-size: 14px;
+  line-height: 40px;
+  background-color: #51545f;
+}
+
+.sidebar_categories li a:hover {
+  background-color: #b5aec4;
+}
+.sidebar_categories li {
+  background-color: white;
+}
+
+.sidebar_categories li a span {
+  margin-right: 5px;
+}
+
+#slider-range {
+  margin-left: 7px !important;
+  margin-top: 20px;
+}
+
+#amount {
+  margin-top: 8px;
+  color: #1e1e27 !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+}
+
+.filter_button {
+  width: 100%;
+  height: 30px;
+  background: #1e1e27;
+  text-align: center;
+  margin-top: 25px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -ms-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.filter_button:hover {
+  background: #34343f;
+}
+
+.filter_button span {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  line-height: 30px;
+  color: #FFFFFF;
+}
+
+/*=======*/
+.container-checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container-checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark-checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 25px;
+  width: 25px;
+  background-color: #eee;
+}
+
+/* On mouse-over, add a grey background color */
+.container-checkbox:hover input~.checkmark-checkbox {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container-checkbox input:checked~.checkmark-checkbox {
+  background-color: #2196F3;
+}
+
+/* Create the checkmark-checkbox/indicator (hidden when not checked) */
+.checkmark-checkbox:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark-checkbox when checked */
+.container-checkbox input:checked~.checkmark-checkbox:after {
+  display: block;
+}
+
+/* Style the checkmark-checkbox/indicator */
+.container-checkbox .checkmark-checkbox:after {
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+
+/* === */
+/* The container */
+.container-radio {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 14px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default radio button */
+.container-radio input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* Create a custom radio button */
+.checkmark-radio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 22px;
+  width: 22px;
+  border: 0.1px solid;
+  border-radius: 50%;
+}
+
+/* On mouse-over, add a grey background color */
+.container-radio:hover input~.checkmark-radio {
+  background-color: #ccc;
+}
+
+/* When the radio button is checked, add a blue background */
+.container-radio input:checked~.checkmark-radio {
+  background-color: #2196F3;
+}
+
+/* Create the indicator (the dot/circle - hidden when not checked) */
+.checkmark-radio:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the indicator (dot/circle) when checked */
+.container-radio input:checked~.checkmark-radio:after {
+  display: block;
+}
+
+/* Style the indicator (dot/circle) */
+.container-radio .checkmark-radio:after {
+  top: 9px;
+  left: 9px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #b5aec4;
+}
+
+
+.active-class {
+  background-color: #fe4c50 !important;
+  color: white;
+}
+
+.new_arrivals_sorting
+{
+	display: inline-block;
+	border-radius: 3px;
+	margin-top: 59px;
+	overflow: visible;
+}
+.grid_sorting_button
+{
+	height: 40px;
+	min-width: 102px;
+	padding-left: 25px;
+	padding-right: 25px;
+	cursor: pointer;
+	border: solid 1px #ebebeb;
+	font-size: 14px;
+	font-weight: 500;
+	text-transform: uppercase;
+	background: #FFFFFF;
+	border-radius: 3px;
+	margin: 0;
+	float: left;
+	margin-left: -1px;
+}
+.grid_sorting_button:first-child
+{
+	margin-left: 0px;
+}
+
+.grid_sorting_button.active:hover
+{
+	background: #FE7C7F !important;
+}
+.grid_sorting_button.active
+{
+	color: #FFFFFF;
+	background: #fe4c50;
+}
+.filter_sidebar,.filter_sidebar h4{
+    border: 1px solid rgb(224, 224, 224);
+    border-radius: 3px;
+    background-color: rgba(221, 221, 221, 0.1);
+    float: left;
+    width: 200px;
+    padding-right: 25px;
+}
+
+.sidebar_categories li:hover{
+  background: rgb(245, 244, 244);
+}

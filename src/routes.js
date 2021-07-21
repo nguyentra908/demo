@@ -4,7 +4,7 @@ import ProductPage from "./containers/ProductPage/ProductPage";
 import CartPage from "./containers/CartPage/CartPage";
 import FormLogin from "./components/Form/FomLogin";
 import FormRegister from "./components/Form/FormRegister";
-import Contact from "./components/HomePage/Contact/Contact";
+import Contact from "./components/HomePage/contact/contact";
 
 export default [
   {
@@ -24,15 +24,15 @@ export default [
     component: CartPage
   },
   {
-    path: "/Login",
+    path: "/login",
     component: FormLogin
   },
   {
-    path: "/Register",
+    path: "/register",
     component: FormRegister
   },
   {
-    path: "/Contact",
+    path: "/contact",
     component: Contact
   }
 ];

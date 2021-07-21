@@ -41,10 +41,10 @@ export default class ProductCard extends Component {
   }
 
   render() {
+
     const { product } = this.props;
     const isSale = product.salePrice < product.originalPrice;
     const originalPrice = isSale && <span>${product.originalPrice}</span>;
-
     return (
       <div className="product-item">
         <div
@@ -83,7 +83,7 @@ export default class ProductCard extends Component {
           onClick={() => this.onAddProductClick(product)}
           className="cart_button"
         >
-          <span>Thêm vào giỏ hàng</span>
+          <span>Add to Cart</span>
         </div>
       </div>
     );

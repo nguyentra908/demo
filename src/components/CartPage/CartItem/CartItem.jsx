@@ -33,18 +33,19 @@ export default class CartItem extends Component {
     return (
       <tr>
         <td>
+          <span onClick={() => this.onClickRemove(product.id)}><i style={{fontSize: 20, marginRight: 5}} class="fa fa-times-circle-o" aria-hidden="true"></i></span>
           <img
-            style={{ width: "200px", height: "200px" }}
+            style={{ width: "60px", height: "60px", marginRight: 10 }}
             src={`assets/${product.thumbnail}`}
             alt={product.thumbnail}
           />
+          <span>{product.name}</span>
         </td>
-        <td>
-          <h4>{product.name}</h4>
-          <h5>Giá: $ {product.salePrice}</h5>
+        <td className="vertical-mid">
+          <span>{product.salePrice}</span>
         </td>
-        <td>
-          <div className="quantity_selector">
+        <td className="vertical-mid">
+          <div className="quantity_selector" style={{ marginLeft: 0, width: '100px', height: 'auto' }}>
             <span className="minus" onClick={() => this.changeQuanlity(-1)}>
               <i className="fa fa-minus" aria-hidden="true" />
             </span>
@@ -54,14 +55,10 @@ export default class CartItem extends Component {
             </span>
           </div>
         </td>
-        <td>
-          <button
-            onClick={() => this.onClickRemove(product.id)}
-            className="btn btn-remove btn-danger"
-          >
-            Remove
-          </button>
+        <td className="vertical-mid">
+          <span>{product.salePrice * amount}</span>
         </td>
+        
       </tr>
     );
   }

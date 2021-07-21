@@ -3,9 +3,9 @@ import {
   FETCH_CATEGORIES_SUCCESS,
   FETCH_CATEGORIES_FAILURE
 } from '../actions/CategoryActions';
-
+import categories from '../services/data/categories';
 const initialState = {
-  items: [],
+  items: categories,
   loading: false,
   error: null
 };

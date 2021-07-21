@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import cx from 'classnames';
-import PropTypes from 'prop-types';
 
 export default class CategoryList extends Component {
   constructor (props) {
@@ -19,9 +18,6 @@ export default class CategoryList extends Component {
   render () {
     return (
       <div className="sidebar_section">
-        <div className="sidebar_title">
-          <h5>Danh mục sản phẩm</h5>
-        </div>
         <ul className="sidebar_categories">
           {this.props.categories.map((category) => (
             <li 

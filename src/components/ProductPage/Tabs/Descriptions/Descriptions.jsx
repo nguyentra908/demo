@@ -4,13 +4,13 @@ import "./Descriptions.css";
 
 export default class Descriptions extends Component {
   render() {
+    const {product} = this.props;
+    if(!product) return (<div>No data</div>)
+    const [img1, img2, img3] = product.listImage;
     return (
       <div className="tab_container active">
         <div className="row">
           <div className="col-lg-5 desc_col">
-            <div className="tab_title">
-              <h4>Mô tả</h4>
-            </div>
             <div className="tab_text_block">
               <h2>Pocket cotton sweatshirt</h2>
               <p>
@@ -21,7 +21,7 @@ export default class Descriptions extends Component {
               </p>
             </div>
             <div className="tab_image">
-              <img src="/assets/images/desc_1.jpg" alt="" />
+              <img src={`/assets/${img1}`} alt="" />
             </div>
             <div className="tab_text_block">
               <h2>Pocket cotton sweatshirt</h2>
@@ -34,7 +34,7 @@ export default class Descriptions extends Component {
           </div>
           <div className="col-lg-5 offset-lg-2 desc_col">
             <div className="tab_image">
-              <img src="/assets/images/desc_2.jpg" alt="" />
+              <img src={`/assets/${img2}`} alt="" />
             </div>
             <div className="tab_text_block">
               <h2>Pocket cotton sweatshirt</h2>
@@ -46,7 +46,7 @@ export default class Descriptions extends Component {
               </p>
             </div>
             <div className="tab_image desc_last">
-              <img src="/assets/images/desc_3.jpg" alt="" />
+              <img src={`/assets/${img3}`} alt="" />
             </div>
           </div>
         </div>
